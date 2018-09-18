@@ -1,0 +1,156 @@
+	.version 1.4
+	.target sm_10, map_f64_to_f32
+	// compiled with /usr/local/cuda/bin/../open64/lib//be
+	// nvopencc 4.0 built on 2011-05-13
+
+	//-----------------------------------------------------------
+	// Compiling /tmp/tmpxft_00001b25_00000000-9_mandelbrot.cpp3.i (/var/folders/Ye/YeXcn-oIE7ybm-TS4yB8c++++TQ/-Tmp-/ccBI#.IRte5z)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_10, Endian:little, Pointer Size:32
+	//  -O3	(Optimization level)
+	//  -g0	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"<command-line>"
+	.file	2	"/tmp/tmpxft_00001b25_00000000-8_mandelbrot.cudafe2.gpu"
+	.file	3	"/usr/lib/gcc/i686-apple-darwin10/4.2.1/include/stddef.h"
+	.file	4	"/usr/local/cuda/bin/../include/crt/device_runtime.h"
+	.file	5	"/usr/local/cuda/bin/../include/host_defines.h"
+	.file	6	"/usr/local/cuda/bin/../include/builtin_types.h"
+	.file	7	"/usr/local/cuda/bin/../include/device_types.h"
+	.file	8	"/usr/local/cuda/bin/../include/driver_types.h"
+	.file	9	"/usr/local/cuda/bin/../include/surface_types.h"
+	.file	10	"/usr/local/cuda/bin/../include/texture_types.h"
+	.file	11	"/usr/local/cuda/bin/../include/vector_types.h"
+	.file	12	"/usr/local/cuda/bin/../include/device_launch_parameters.h"
+	.file	13	"/usr/local/cuda/bin/../include/crt/storage_class.h"
+	.file	14	"/usr/include/i386/_types.h"
+	.file	15	"/usr/include/time.h"
+	.file	16	"mandelbrot.cu"
+	.file	17	"/usr/local/cuda/bin/../include/common_functions.h"
+	.file	18	"/usr/local/cuda/bin/../include/math_functions.h"
+	.file	19	"/usr/local/cuda/bin/../include/math_constants.h"
+	.file	20	"/usr/local/cuda/bin/../include/device_functions.h"
+	.file	21	"/usr/local/cuda/bin/../include/sm_11_atomic_functions.h"
+	.file	22	"/usr/local/cuda/bin/../include/sm_12_atomic_functions.h"
+	.file	23	"/usr/local/cuda/bin/../include/sm_13_double_functions.h"
+	.file	24	"/usr/local/cuda/bin/../include/sm_20_atomic_functions.h"
+	.file	25	"/usr/local/cuda/bin/../include/sm_20_intrinsics.h"
+	.file	26	"/usr/local/cuda/bin/../include/surface_functions.h"
+	.file	27	"/usr/local/cuda/bin/../include/texture_fetch_functions.h"
+	.file	28	"/usr/local/cuda/bin/../include/math_functions_dbl_ptx1.h"
+
+
+	.entry _Z18compute_mandelbrotPi (
+		.param .u32 __cudaparm__Z18compute_mandelbrotPi_pixels)
+	{
+	.reg .u32 %r<23>;
+	.reg .f32 %f<34>;
+	.reg .f64 %fd<7>;
+	.reg .pred %p<7>;
+	.loc	16	25	0
+$LDWbegin__Z18compute_mandelbrotPi:
+	.loc	16	14	0
+	cvt.u32.u16 	%r1, %ctaid.x;
+	cvt.u32.u16 	%r2, %ctaid.y;
+	cvt.u32.u16 	%r3, %nctaid.x;
+	mov.f32 	%f1, 0f00000000;     	// 0
+	mov.f32 	%f2, 0f00000000;     	// 0
+	mov.f32 	%f3, 0f00000000;     	// 0
+	mad.f32 	%f4, %f2, %f3, %f1;
+	mov.f32 	%f5, 0f40400000;     	// 3
+	setp.le.f32 	%p1, %f4, %f5;
+	@!%p1 bra 	$Lt_0_3842;
+	cvt.rn.f32.u32 	%f6, %r2;
+	cvt.u32.u16 	%r4, %nctaid.y;
+	cvt.rn.f32.u32 	%f7, %r4;
+	cvt.rn.f32.u32 	%f8, %r1;
+	cvt.rn.f32.u32 	%f9, %r3;
+	mov.f32 	%f10, 0f3f000000;    	// 0.5
+	mul.f32 	%f11, %f7, %f10;
+	mov.f32 	%f12, 0f3f000000;    	// 0.5
+	mul.f32 	%f13, %f9, %f12;
+	sub.f32 	%f14, %f6, %f11;
+	sub.f32 	%f15, %f8, %f13;
+	mov.f32 	%f16, 0f40800000;    	// 4
+	mul.f32 	%f17, %f14, %f16;
+	mov.f32 	%f18, 0f40800000;    	// 4
+	mul.f32 	%f19, %f15, %f18;
+	div.full.f32 	%f20, %f19, %f9;
+	div.full.f32 	%f21, %f17, %f7;
+	cvt.f64.f32 	%fd1, %f21;
+	mov.f32 	%f22, 0fc0400000;    	// -3
+	add.f32 	%f23, %f20, %f22;
+	mov.s32 	%r5, 0;
+	mov.f32 	%f24, 0f00000000;    	// 0
+	mov.f32 	%f25, 0f00000000;    	// 0
+$L_0_2306:
+	.loc	16	16	0
+	cvt.f64.f32 	%fd2, %f25;
+	cvt.f64.f32 	%fd3, %f24;
+	add.f64 	%fd4, %fd2, %fd2;
+	mad.rn.f64 	%fd5, %fd3, %fd4, %fd1;
+	cvt.rn.f32.f64 	%f26, %fd5;
+	.loc	16	17	0
+	mul.f32 	%f27, %f24, %f24;
+	mul.f32 	%f28, %f25, %f25;
+	sub.f32 	%f29, %f28, %f27;
+	add.f32 	%f25, %f23, %f29;
+	.loc	16	18	0
+	mov.f32 	%f24, %f26;
+	.loc	16	19	0
+	add.s32 	%r5, %r5, 1;
+	.loc	16	14	0
+	mul.f32 	%f30, %f26, %f26;
+	mad.f32 	%f31, %f25, %f25, %f30;
+	mov.f32 	%f32, 0f40400000;    	// 3
+	setp.le.f32 	%p2, %f31, %f32;
+	@!%p2 bra 	$L_0_2562;
+	mov.u32 	%r6, 1000;
+	setp.lt.s32 	%p3, %r5, %r6;
+	@%p3 bra 	$L_0_2306;
+	bra.uni 	$L_0_2562;
+$Lt_0_3842:
+	mov.s32 	%r5, 0;
+$L_0_2562:
+	.loc	16	19	0
+	mov.u32 	%r7, 1000;
+	setp.eq.s32 	%p4, %r5, %r7;
+	@%p4 bra 	$Lt_0_3586;
+	.loc	16	22	0
+	mul.lo.s32 	%r8, %r5, 10;
+	mov.s32 	%r9, -2139062143;
+	mov.s32 	%r10, 0;
+	setp.lt.s32 	%p5, %r8, %r10;
+	abs.s32 	%r11, %r8;
+	mul.hi.u32 	%r12, %r11, %r9;
+	shr.s32 	%r13, %r12, 7;
+	@%p5 sub.s32 	%r13, %r10, %r13;
+	mov.s32 	%r14, %r13;
+	mul.lo.s32 	%r15, %r14, 255;
+	sub.s32 	%r16, %r8, %r15;
+	bra.uni 	$Lt_0_3330;
+$Lt_0_3586:
+	mov.s32 	%r16, 255;
+$Lt_0_3330:
+	.loc	16	36	0
+	mul.lo.u32 	%r17, %r2, %r3;
+	add.u32 	%r18, %r17, %r1;
+	mul.lo.u32 	%r19, %r18, 12;
+	ld.param.u32 	%r20, [__cudaparm__Z18compute_mandelbrotPi_pixels];
+	add.u32 	%r21, %r20, %r19;
+	st.global.s32 	[%r21+0], %r16;
+	.loc	16	37	0
+	st.global.s32 	[%r21+4], %r16;
+	.loc	16	38	0
+	st.global.s32 	[%r21+8], %r16;
+	.loc	16	39	0
+	exit;
+$LDWend__Z18compute_mandelbrotPi:
+	} // _Z18compute_mandelbrotPi
+
